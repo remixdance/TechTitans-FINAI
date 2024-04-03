@@ -1,0 +1,28 @@
+//Determinacion de costos
+input.Precio_de_venta = input.Total_de_coste * 100 / (100 - input.Margen);
+var_coste = 0;
+if(input.Tabla_de_insumos.Cantidad != null)
+{
+	row.Importe=row.Cantidad * row.Tarifa;
+}
+for each  articulo in Tabla_de_insumos
+{
+	if(articulo.Insumo != null && articulo.Cantidad != null)
+	{
+		var_coste = var_coste + articulo.Importe;
+	}
+}
+input.Total_de_coste = var_coste;
+var_total = 0;
+if(input.Tabla_de_insumos.Cantidad != null)
+{
+	row.Importe=row.Cantidad * row.Tarifa;
+}
+for each  articulo in Tabla_de_insumos
+{
+	if(articulo.Insumo != null && articulo.Cantidad != null)
+	{
+		var_total = var_total + articulo.Importe;
+	}
+}
+input.Total_de_coste = var_total;

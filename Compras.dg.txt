@@ -1,0 +1,26 @@
+//Compras
+if(input.Tabla_de_art_culos.Articulos != null)
+{
+	producto = Articulos[ID != 0];
+	row.Tarifa=producto.Precio_de_coste;
+}
+var_total = 0;
+if(input.Tabla_de_art_culos.Cantidad != null)
+{
+	row.Importe=row.Cantidad * row.Tarifa;
+}
+for each  articulo in Tabla_de_art_culos
+{
+	if(articulo.Articulos != null && articulo.Cantidad != null)
+	{
+		var_total = var_total + articulo.Importe;
+	}
+}
+input.Subtotal = var_total;
+input.IVA = var_total * 0.16;
+input.Total = input.Subtotal + input.IVA;
+if(input.Nombre_del_proveedor != null && input.Fecha != null)
+{
+	traerFecha = Utilidad[Fecha == input.Fecha];
+	traerFecha.Total_de_Compras=input.Total;
+}

@@ -1,0 +1,34 @@
+//Añadir ExistenciasCreated or EditedUser input of Código QR/BarrasField scripts
+bar_code = Articulos[Codigo_QR_Barras = input.C_digo_QR];
+if(bar_code.count() != 0)
+{
+	input.Nombre_del_articulo = bar_code.Nombre_del_articulo;
+	input.Precio_de_venta = bar_code.Precio_de_venta;
+	input.Precio_de_coste = bar_code.Precio_de_coste;
+}
+else
+{
+	input.Precio_de_venta = null;
+	input.Precio_de_coste = null;
+}
+//Añadir ExistenciasCreated or EditedSuccessful form submissionSubmit
+
+current_pro = Articulos[Codigo_QR_Barras = input.C_digo_QR];
+if(current_pro.count() == 0)
+{
+	arti = insert into Articulos
+	[
+		Added_User=zoho.loginuser
+		Codigo_QR_Barras=input.C_digo_QR
+		Nombre_del_articulo=input.Nombre_del_articulo
+		Precio_de_venta=input.Precio_de_venta
+		Precio_de_coste=input.Precio_de_coste
+		Existencias_de_apertura=input.Existencias_de_apertura
+	];
+}
+else
+{
+	current_pro.Precio_de_venta=input.Precio_de_venta;
+	current_pro.Precio_de_coste=input.Precio_de_coste;
+	current_pro.Existencias_de_apertura=input.Existencias_de_apertura + current_pro.Existencias_de_apertura;
+}

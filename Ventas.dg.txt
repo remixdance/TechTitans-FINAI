@@ -1,0 +1,37 @@
+//Ventas
+if(input.Tabla_de_art_culos.Articulos != null)
+{
+	producto = Articulos[ID != 0];
+	row.Tarifa=producto.Precio_de_venta;
+}
+var_total = 0;
+if(input.Tabla_de_art_culos.Cantidad != null)
+{
+	row.Importe=row.Cantidad * row.Tarifa;
+}
+for each  articulo in Tabla_de_art_culos
+{
+	if(articulo.Articulos != null && articulo.Cantidad != null)
+	{
+		var_total = var_total + articulo.Importe;
+	}
+}
+input.Subtotal = var_total;
+input.IVA = var_total * 0.16;
+input.Total_a_pagar = input.Subtotal + input.IVA;
+for each  articulo in Tabla_de_art_culos
+{
+	producto = Stock[Nombre_del_articulo == articulo.Articulos.Nombre_del_articulo];
+	producto.Existencias_de_apertura=producto.Existencias_de_apertura - articulo.Cantidad;
+	agregar_producto = Articulos[Nombre_del_articulo == producto.Nombre_del_articulo];
+	agregar_producto.Unidades_vendidas=agregar_producto.Unidades_vendidas + articulo.Cantidad;
+}
+if(input.Nombre_del_Cliente != null)
+{
+	ventas = insert into Utilidad
+	[
+		Added_User=zoho.loginuser
+		Fecha=input.Fecha
+		Total_de_ventas=input.Total_a_pagar
+	];
+}
